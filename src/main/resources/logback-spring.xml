@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" debug="false">
+    <property name="application.name" value="docker-test"/>
+    <property name="log.path" value="/logs"/>
+    <property name="log.pattern" value="%d{yyyyMMddHHmmss}|%p|(%file:%line\)|%m%n"/>
+
+    <appender name="debug_appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${application.name}/debug.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${application.name}/debug/debug-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyyMMddHHmmss}|%p|(%file:%line\)|%m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="info_appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${application.name}/info.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${application.name}/info/info-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyyMMddHHmmss}|%p|(%file:%line\)|%m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="error_appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${application.name}/error.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${application.name}/error/error-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyyMMddHHmmss}|%p|(%file:%line\)|%m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <springProfile name="default,dev">
+        <root level="debug">
+            <appender-ref ref="debug_appender"/>
+            <appender-ref ref="info_appender"/>
+            <appender-ref ref="error_appender"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="test">
+        <root level="debug">
+            <appender-ref ref="debug_appender"/>
+            <appender-ref ref="info_appender"/>
+            <appender-ref ref="error_appender"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <root level="info">
+            <appender-ref ref="info_appender"/>
+            <appender-ref ref="error_appender"/>
+        </root>
+    </springProfile>
+
+</configuration>
