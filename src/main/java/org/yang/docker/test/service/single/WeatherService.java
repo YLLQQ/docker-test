@@ -32,7 +32,4 @@ public class WeatherService {
         return weatherMapper.findAllWithColumn(WeatherDO.class);
     }
 
-    public List<WeatherDO> getWeatherDO1() {
-        return weatherMapper.findAllWithColumn(WeatherDO.class);
-    }
 }
