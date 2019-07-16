@@ -32,24 +32,5 @@ public class WeatherServiceTest extends DockerTestApplicationTests {
         long end = System.currentTimeMillis();
         System.out.println(end - start);
 
-        start = System.currentTimeMillis();
-
-        weatherDOList = weatherService.getWeatherDO1();
-
-        for (WeatherDO weatherDO : weatherDOList) {
-            System.out.println(weatherDO);
-        }
-
-        end = System.currentTimeMillis();
-        System.out.println(end - start);
-
-        start = System.currentTimeMillis();
-
-        WeatherDO weatherDO = weatherService.getWithColumnById();
-
-        System.out.println(weatherDO);
-
-        end = System.currentTimeMillis();
-        System.out.println(end - start);
     }
 }
