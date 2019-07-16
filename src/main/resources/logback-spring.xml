@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" debug="false">
     <property name="application.name" value="docker-test"/>
-    <property name="log.path" value="/logs"/>
-    <property name="log.pattern" value="%d{yyyyMMddHHmmss}|%p|(%file:%line\)|%m%n"/>
+    <property name="log.path" value="/Users/eleven/Desktop/datas/logs"/>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyyMMddHHmmss}|%highlight(%p)|%highlight((%file:%line\))|%cyan(%m%n)</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
 
     <appender name="debug_appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}/${application.name}/debug.log</file>
@@ -58,11 +64,9 @@
         </filter>
     </appender>
 
-    <springProfile name="default,dev">
+    <springProfile name="dev">
         <root level="debug">
-            <appender-ref ref="debug_appender"/>
-            <appender-ref ref="info_appender"/>
-            <appender-ref ref="error_appender"/>
+            <appender-ref ref="stdout"/>
         </root>
     </springProfile>
 
