@@ -2,11 +2,12 @@ package org.yang.docker.test.base;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.jn.persists.model.BaseDO;
+import com.jn.persists.select.WhereCondition;
+import com.jn.utils.ClassUtil;
+import com.jn.utils.StringUtil;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.yang.docker.test.base.sql.WhereCondition;
-import org.yang.docker.test.util.ClassUtil;
-import org.yang.docker.test.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;

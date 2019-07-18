@@ -26,11 +26,6 @@
             <version>1.2.10</version>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>21.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.0</version>
@@ -49,16 +44,23 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.jn</groupId>
+            <artifactId>base-common</artifactId>
+            <version>1.0-release</version>
+        </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>9n-private</id>
+            <url>http://192.168.1.232:28081/repository/9n-repository/</url>
+        </repository>
+    </repositories>
 
     <build>
         <finalName>${project.artifactId}</finalName>

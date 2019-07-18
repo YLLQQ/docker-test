@@ -1,7 +1,7 @@
 package org.yang.docker.test.model.domain;
 
+import com.jn.persists.model.BaseDO;
 import lombok.Data;
-import org.yang.docker.test.base.BaseDO;
 
 import java.util.Date;
 
