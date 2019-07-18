@@ -5,7 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.jn.persists.model.BaseDO;
 import com.jn.persists.select.WhereCondition;
 import com.jn.utils.ClassUtil;
-import com.jn.utils.StringUtil;
+import com.jn.utils.SqlUtil;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -36,7 +36,7 @@ public interface BaseMapper<T extends BaseDO> {
             int pageSize
     ) {
         PageHelper.startPage(pageNum, pageSize);
-        String condition = StringUtil.conditionListToString(whereConditionList);
+        String condition = SqlUtil.conditionListToString(whereConditionList);
 
         return selectWithColumnByConditionAndPageFromDB(
                 ClassUtil.getFullColumnStringByDOClass(tClass),
@@ -95,7 +95,7 @@ public interface BaseMapper<T extends BaseDO> {
             Class<T> tClass,
             ArrayList<WhereCondition> whereConditionList
     ) {
-        String condition = StringUtil.conditionListToString(whereConditionList);
+        String condition = SqlUtil.conditionListToString(whereConditionList);
 
         return selectWithColumnByConditionFromDB(
                 ClassUtil.getFullColumnStringByDOClass(tClass),
